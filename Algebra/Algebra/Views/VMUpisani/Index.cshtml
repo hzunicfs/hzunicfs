@@ -1,0 +1,144 @@
+﻿@model Algebra.Models.Pretrazivanje.VMUpisani.VMUpisani_Pre
+
+@{
+    ViewBag.Title = "Index";
+    
+}
+    <head>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Sakrij').hide();
+            $("#Pretrazi").click(function () {
+                $("#Sakrij").toggle();
+
+            });
+        });
+        </script>
+    </head>
+
+
+<link href="@Url.Content("~/Content/Style1.css")" rel="stylesheet" type="text/css" />
+<h3><b>UPISANI</b></h3>
+<a href="#" id="Pretrazi">Pretrazi</a>
+@using (Html.BeginForm("Index", "VMUpisani"))
+{@Html.AntiForgeryToken()
+<table class="table">
+    <tr id="Sakrij">
+
+        <th>
+            @Html.EditorFor(model => model.Upisani.Ime, new { htmlAttributes = new { @class = "form-control", placeholder = "IME" } })
+        </th>
+        <th>
+            @Html.EditorFor(model => model.Upisani.Prezime, new { htmlAttributes = new { @class = "form-control", placeholder = "PREZIME" } })
+        </th>
+        <th>
+            @Html.EditorFor(model => model.StartUpisanihBroj, new { htmlAttributes = new { @class = "form-control", placeholder = "OD" } })
+
+            @Html.EditorFor(model => model.EndUpisanihBroj, new { htmlAttributes = new { @class = "form-control", placeholder = "DO" } })
+        </th>
+        <th>@Html.EditorFor(model => model.Adreseupisanih.Grad, new { htmlAttributes = new { @class = "form-control", placeholder = "GRAD" } })</th>
+        <th>
+            @Html.EditorFor(model => model.Upisani.OIB, new { htmlAttributes = new { @class = "form-control", placeholder = "OIB" } })
+        </th>
+        <th>
+            @Html.EditorFor(model => model.Upisani.Broj_osobne, new { htmlAttributes = new { @class = "form-control", placeholder = "BROJ OSOBNE" } })
+        </th>
+        <th>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-7" align="right">
+                    <input type="submit" value="PRETRAŽI" class="btn btn-default" />
+                </div>
+            </div>
+        </th>
+    </tr>
+
+
+
+    <tr>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.Upisani.Ime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Upisani.Prezime)
+        </th>
+        <th>
+            UPISAN
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adreseupisanih.AU_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Upisani.OIB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Upisani.Broj_osobne)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Upisani.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Upisani.Telefon)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.IEUpisani)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ime)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prezime)
+            </td>
+            <td>
+                @if (Model.IEUpisanihBroj != null)
+                {
+                    foreach (var meti in Model.IEUpisanihBroj.Where(meti => meti.Upisani_ID == item.Upisani_ID))
+                    {
+
+                        @Html.ActionLink((meti.Brojac).ToString(), "DetailsUpisani", "VMOtvoreniSeminari", new { id = @Html.DisplayFor(modelItem => meti.Upisani_ID) }, null)
+                    }
+                }
+            </td>
+
+
+            <td>
+                @foreach (var meti in Model.IEAdresaupisanih.Where(meti => meti.AU_ID == item.AU_ID))
+                {
+                    {<pre>@Html.DisplayFor(modelItem => meti.Ulica) @Html.DisplayFor(modelItem => meti.Kucni_broj), @Html.DisplayFor(modelItem => meti.Grad)</pre>}
+                }
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.OIB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Broj_osobne)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefon)
+            </td>
+            <td>
+                @Html.ActionLink("Izmjeni", "Edit", new { id = item.Upisani_ID, id2 = item.AU_ID }) |
+                @Html.ActionLink("Detalji", "Details", new { id = item.Upisani_ID, id2 = item.AU_ID }) |
+                @Html.ActionLink("Izbriši", "Delete", new { id = item.Upisani_ID, id2 = item.AU_ID })
+            </td>
+
+        </tr>
+
+
+
+      }
+
+
+</table>
+}

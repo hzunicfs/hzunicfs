@@ -1,0 +1,85 @@
+﻿@model Algebra.Models.VMPredbiljezba
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <h2>PREDBILJEŽBA-DETALJI</h2>
+
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal" style="font-size:medium">
+        <dt>
+            @Html.DisplayNameFor(model => model.Predbiljezba.OS_ID)
+        </dt>
+
+        <dd>
+
+            @Html.ActionLink( (@Html.DisplayFor(model => model.Predbiljezba.OS_ID)).ToString(), "DetailsPredbiljezba", "VMOtvoreniSeminari",new {Model.Predbiljezba.OS_ID },null)
+          
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Predbiljezba.Ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Predbiljezba.Ime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Predbiljezba.Prezime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Predbiljezba.Prezime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Predbiljezba.Mjesto_stanovanja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Predbiljezba.Mjesto_stanovanja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Predbiljezba.Telefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Predbiljezba.Telefon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Predbiljezba.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Predbiljezba.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Predbiljezba.Datum_predbiljezbe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Predbiljezba.Datum_predbiljezbe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Predbiljezba.Napomena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Predbiljezba.Napomena)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("IZMJENI", "Edit", new { id = Model.Predbiljezba.Predbiljezba_ID }) |
+    @Html.ActionLink("POvratak na listu predbilježenih", "Index")
+</p>

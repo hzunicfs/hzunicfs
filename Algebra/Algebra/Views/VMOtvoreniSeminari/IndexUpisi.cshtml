@@ -1,0 +1,123 @@
+﻿@model Algebra.Models.Pretrazivanje.VMOtvoreniSeminari.VMOtvoreniSeminari_Pre
+
+@{
+    ViewBag.Title = "Index";
+}
+<head>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Sakrij').hide();
+            $("#Pretrazi").click(function () {
+                $("#Sakrij").toggle();
+
+            });
+        });
+    </script>
+</head>
+<link href="@Url.Content("~/Content/Style1.css")" rel="stylesheet" type="text/css" />
+<h3><b>OTVORENI SEMINARI</b></h3>
+<a href="#" id="Pretrazi">Pretrazi</a>
+@using (Html.BeginForm())
+{@Html.AntiForgeryToken()
+<table class="table">
+
+    <tr id="Sakrij">
+        <th>
+            @Html.EditorFor(model => model.Otvoreniseminari.OS_ID, new { htmlAttributes = new { @class = "form-control" } })
+        </th>
+
+        <th>
+            @Html.DropDownListFor(model => model.Otvoreniseminari.Seminar_ID, new SelectList(Model.SLSeminari, "Value", "Text"), "Odaberi seminar", htmlAttributes: new { @class = "form-control" })
+        </th>
+
+      
+        <th>
+            @Html.EditorFor(model => model.StartDatumP, new { htmlAttributes = new { @class = "form-control", placeholder = "OD YYYY-MM-DD" } })
+
+            @Html.EditorFor(model => model.EndDatumP, new { htmlAttributes = new { @class = "form-control", placeholder = "DO YYYY-MM-DD" } })
+        </th>
+
+        <th>
+            @Html.EditorFor(model => model.StartDatumZ, new { htmlAttributes = new { @class = "form-control", placeholder = "OD YYYY-MM-DD" } })
+
+            @Html.EditorFor(model => model.EndDatumZ, new { htmlAttributes = new { @class = "form-control", placeholder = "DO YYYY-MM-DD" } })
+        </th>
+
+        <th>
+            @Html.DropDownListFor(model => model.Otvoreniseminari.AO_ID, new SelectList(Model.SLAdresaodrzavanja, "Value", "Text"), "Odaberi adresu održavanja", htmlAttributes: new { @class = "form-control" })
+        </th>
+
+        <th>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-7" align="right">
+                    <input type="submit" value="PRETRAŽI" class="btn btn-default" />
+                </div>
+            </div>
+        </th>
+
+    </tr>
+
+
+
+
+
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Otvoreniseminari.OS_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Otvoreniseminari.Seminar_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Otvoreniseminari.Datum_pocetka)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Otvoreniseminari.Datum_zavrsetka)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Otvoreniseminari.AO_ID)
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.IEOtvoreniseminari)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OS_ID)
+            </td>
+            <td>
+                @foreach (var meti in Model.IESeminari.Where(meti => meti.Seminar_ID == item.Seminar_ID))
+                {
+                    {@Html.DisplayFor(modelItem => meti.Naziv)}
+            }
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Datum_pocetka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Datum_zavrsetka)
+            </td>
+            <td>
+                @foreach (var seti in Model.IEAdresaodrzavanja.Where(seti => seti.AO_ID == item.AO_ID))
+                {
+                    {<pre>@Html.DisplayFor(modelItem => seti.Ulica) @Html.DisplayFor(modelItem => seti.Kucni_broj), @Html.DisplayFor(modelItem => seti.Grad)</pre>}
+                }
+            </td>
+
+
+            <td>
+
+                @Html.ActionLink("DETALJI/UPIŠI", "DetailsUpisi", "VMOtvoreniSeminari", new { id = item.OS_ID, id2 = item.AO_ID, id3 = item.Predavaci_ID, id4 = item.Seminar_ID }, null)
+
+            </td>
+        </tr>
+    }
+
+</table>
+}

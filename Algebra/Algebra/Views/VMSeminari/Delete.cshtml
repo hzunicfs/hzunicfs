@@ -1,0 +1,53 @@
+﻿@model Algebra.Models.VMSeminari
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3><b>SEMINAR-IZBRIŠI</b></h3>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Seminari.Seminar_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seminari.Seminar_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Seminari.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seminari.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Seminari.Opis)
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.Seminari.Opis, htmlAttributes: new { @readonly = true, @class = "textarea2" })
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color col-md-offset-2 col-md-7" align="right">
+            <input type="submit" value="IZBRIŠI" class="btn btn-default" />
+        </div>
+    }
+</div>
+<br /><br />
+<div>
+    @Html.ActionLink("Popis seminara", "Seminari")
+</div>
+  
+

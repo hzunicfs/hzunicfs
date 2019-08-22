@@ -1,0 +1,94 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+navbar {
+    background-image: none;
+}
+.navbar-inverse {
+    background-color: #000000 !important;
+    border-color: #000000 !important;
+}
+
+.navbar-brand2 {
+    padding-right: 2px;
+    padding-left: 25px;
+}
+.navbar{
+    min-height:50px;
+    margin-bottom:20px;
+    max-height:45px;
+
+}
+
+td.right-align {
+    text-align: right;
+}
+
+td.left-align {
+    text-align: left;
+}
+
+table.prodavac {
+    margin-left: 10%;
+    margin-right: auto;
+    width: 40%;
+    font-size: medium;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-align: right;
+}
+
+
+table.Details {
+    margin-left: 10%;
+    margin-right: auto;
+    width: 55%;
+    font-size: medium;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-align: left;
+}
+
+
+pre {
+    border: 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.4285;
+    color: #333333;
+    background-color: #fff;
+    padding: 0px;
+}
+
+
+textarea.textarea2{
+    min-width: 400px;
+    min-height: 400px;
+    resize: none;
+}
+textarea.textarea3 {
+    max-width: 250px;
+    max-height: 50px;
+    resize: none;
+}
+

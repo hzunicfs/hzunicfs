@@ -1,0 +1,92 @@
+﻿@model Algebra.Models.VMPredavac
+
+@{
+    ViewBag.Title = "Details";
+    <link href="@Url.Content("~/Content/Style1.css")" rel="stylesheet" type="text/css" />
+}
+
+<h3><b>PREDAVAČ-DETALJI</b></h3>
+
+<br />
+<div>
+    @Html.AntiForgeryToken()
+
+    <table class="prodavacc">
+        <tr>
+            <td>@Html.LabelFor(model => model.Predavaci.Ime, htmlAttributes: new { @class = "control-label col-md-3" })</td>
+            <td> @Html.DisplayFor(model => model.Predavaci.Ime)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Predavaci.Prezime, htmlAttributes: new { @class = "control-label col-md-3" })</td>
+            <td>@Html.DisplayFor(model => model.Predavaci.Prezime)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Predavaci.OIB, htmlAttributes: new { @class = "control-label col-md-3" })</td>
+            <td> @Html.DisplayFor(model => model.Predavaci.OIB)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Predavaci.Broj_osobne, htmlAttributes: new { @class = "control-label col-md-9" })</td>
+            <td>@Html.DisplayFor(model => model.Predavaci.Broj_osobne)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(model => model.Predavaci.Email, htmlAttributes: new { @class = "control-label col-md-3" })</td>
+            <td>@Html.DisplayFor(model => model.Predavaci.Email)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(model => model.Predavaci.Telefon, htmlAttributes: new { @class = "control-label col-md-3" }) </td>
+            <td>@Html.DisplayFor(model => model.Predavaci.Telefon)</td>
+        </tr>
+    </table>
+    <br />
+    <h4><b>ADRESA STANOVANJA:</b></h4>
+    <br />
+
+
+
+    <table class="table">
+        @foreach (var item in Model.IEAdresepredavaca.Where(item => item.AP_ID == Model.Predavaci.AP_ID))
+        {
+            <tr>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Adresepredavaca.Ulica)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Adresepredavaca.Kucni_broj)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Adresepredavaca.Grad)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Adresepredavaca.Postanski_broj)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Adresepredavaca.Drzava)
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ulica)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kucni_broj)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Postanski_broj)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Drzava)
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+</div>
+<p>
+    @Html.ActionLink("Izmjeni", "Edit", "VMPredavac", new { id = Model.Predavaci.Predavaci_ID, id2 = Model.Predavaci.AP_ID }, null)
+    &emsp;&emsp; @Html.ActionLink("Povratak na listu predavača", "Index", "VMPredavac")
+</p>

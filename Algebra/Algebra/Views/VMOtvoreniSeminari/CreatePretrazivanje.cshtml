@@ -1,0 +1,78 @@
+﻿@model Algebra.Models.VMOtvoreniSeminari
+
+@{
+    ViewBag.Title = "Create";
+}
+
+    <h3><b>NOVI OTVORENI SEMINAR</b></h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+   
+  
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Otvoreniseminari.Seminar_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Otvoreniseminari.Seminar_ID, new SelectList(Model.SLSeminari, "Value", "Text"), "Odaberi seminar", htmlAttributes: new { @class = "control-label col-md-4" })
+            @Html.ValidationMessageFor(model => model.Otvoreniseminari.Seminar_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Otvoreniseminari.Broj_polaznika, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Otvoreniseminari.Broj_polaznika, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Otvoreniseminari.Broj_polaznika, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Otvoreniseminari.Datum_pocetka, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Otvoreniseminari.Datum_pocetka, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Otvoreniseminari.Datum_pocetka, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Otvoreniseminari.Datum_zavrsetka, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Otvoreniseminari.Datum_zavrsetka, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Otvoreniseminari.Datum_zavrsetka, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Otvoreniseminari.AO_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Otvoreniseminari.AO_ID, new SelectList(Model.SLAdresaodrzavanja, "Value", "Text"), "Odaberi adresu održavanja", htmlAttributes: new { @class = "control-label col-md-4" })
+            @Html.ValidationMessageFor(model => model.Otvoreniseminari.AO_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Otvoreniseminari.Predavaci_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Otvoreniseminari.Predavaci_ID, new SelectList(Model.SLPredavaci, "Value", "Text"), "Odaberi predavača", htmlAttributes: new { @class = "control-label col-md-4" })
+            @Html.ValidationMessageFor(model => model.Otvoreniseminari.Predavaci_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-7" align="right">
+            <input type="submit" value="DODAJ" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Povratak na listu", "IndexPretrazivanje")
+</div>

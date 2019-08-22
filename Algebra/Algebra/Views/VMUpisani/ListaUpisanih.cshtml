@@ -1,0 +1,79 @@
+﻿@model Algebra.Models.VMUpisani
+
+@{
+    ViewBag.Title = "Index";
+}
+    <link href="@Url.Content("~/Content/Style1.css")" rel="stylesheet" type="text/css" />
+<h3><b>UPISANI NA SEMINAR </b></h3>
+
+<table class="table">
+    <tr>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.Upisani.Ime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Upisani.Prezime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adreseupisanih.AU_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Upisani.OIB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Upisani.Broj_osobne)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Upisani.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Upisani.Telefon)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.IEUpisi)
+    {
+        foreach (var gtem in Model.IEUpisani.Where(gtem => gtem.Upisani_ID == item.Upisani_ID))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => gtem.Ime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => gtem.Prezime)
+                </td>
+                <td>
+                    @foreach (var meti in Model.IEAdresaupisanih.Where(meti => meti.AU_ID == gtem.AU_ID))
+                    {
+                        {<pre>@Html.DisplayFor(modelItem => meti.Ulica) @Html.DisplayFor(modelItem => meti.Kucni_broj), @Html.DisplayFor(modelItem => meti.Grad)</pre>}
+                    }
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => gtem.OIB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => gtem.Broj_osobne)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => gtem.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => gtem.Telefon)
+                </td>
+                <td>
+                    @Html.ActionLink("Ispiši", "DeleteUpisanog", "VMUpisani", new { id = item.Upisani_ID, id2 = item.OS_ID }, null)
+                </td>
+            </tr>
+
+        }
+
+    }
+
+
+</table>
+
+@Html.ActionLink("Povratak na listu otvorenih seminara", "IndexPretrazivanje", "VMOtvoreniSeminari") 

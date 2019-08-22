@@ -1,0 +1,77 @@
+﻿@model Algebra.Models.Pretrazivanje.VMSeminari.VMSeminari_Pre
+
+@{
+    ViewBag.Title = "Seminari";
+}<link href="@Url.Content("~/Content/Style1.css")" rel="stylesheet" type="text/css" />
+<head>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Sakrij').hide();
+            $("#Pretrazi").click(function () {
+                $("#Sakrij").toggle();
+
+            });
+        });
+    </script>
+</head>
+@using (Html.BeginForm())
+{@Html.AntiForgeryToken()
+      
+<h3><b>SEMINARI</b></h3>
+
+<p>
+    @Html.ActionLink("Dodaj novi seminar", "Create") &emsp;&emsp; <a href="#" id="Pretrazi">Pretraži</a>
+</p>
+<table class="table">
+    <tr id="Sakrij">
+        <th>
+            @Html.EditorFor(model => model.Seminari.Seminar_ID, new { htmlAttributes = new { @class = "form-control" } })
+        </th>
+        <th>
+            @Html.EditorFor(model => model.Seminari.Naziv, new { htmlAttributes = new { @class = "form-control" } })
+        </th>
+        <th>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-7" align="right">
+                    <input type="submit" value="PRETRAŽI" class="btn btn-default" />
+                </div>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Seminari.Seminar_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seminari.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seminari.Opis)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.IESeminari)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Seminar_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                @Html.TextAreaFor(modelItem => item.Opis, new { @readonly = true, @class = "textarea3" })
+            </td>
+            <td>
+                @Html.ActionLink("Uredi", "Edit", new { id = item.Seminar_ID }) |
+                @Html.ActionLink("Izbriši", "Delete", new { id = item.Seminar_ID })|
+                @Html.ActionLink("Detalji", "Details", new { id = item.Seminar_ID }) |
+            </td>
+        </tr>
+    }
+
+</table>
+}

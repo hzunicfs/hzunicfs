@@ -1,0 +1,88 @@
+﻿@model Algebra.Models.VMOtvoreniSeminari
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<link href="@Url.Content("~/Content/Style1.css")" rel="stylesheet" type="text/css" />
+<h3><b>UPISANI SEMINARI</b></h3>
+
+<br />
+<div>
+    @Html.AntiForgeryToken()
+
+    <table class="table">
+        <tr>
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.Otvoreniseminari.OS_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Otvoreniseminari.Seminar_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Otvoreniseminari.Broj_polaznika)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Otvoreniseminari.Datum_pocetka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Otvoreniseminari.Datum_zavrsetka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Otvoreniseminari.Predavaci_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Otvoreniseminari.AO_ID)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.IEUpisi)
+        {
+            foreach (var gtem in Model.IEOtvoreniseminari.Where(gtem => gtem.OS_ID == item.OS_ID))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => gtem.OS_ID)
+                    </td>
+                    <td>
+                        @foreach (var meti in Model.IESeminari.Where(meti => meti.Seminar_ID == gtem.Seminar_ID))
+                        {
+                            @Html.DisplayFor(modelItem => meti.Naziv)
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => gtem.Broj_polaznika)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => gtem.Datum_pocetka)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => gtem.Datum_zavrsetka)
+                    </td>
+                    <td>
+                        @foreach (var meti in Model.IEAdresaodrzavanja.Where(meti => meti.AO_ID == gtem.AO_ID))
+                        {
+                            <pre>@Html.DisplayFor(modelItem => meti.Ulica) @Html.DisplayFor(modelItem => meti.Kucni_broj), @Html.DisplayFor(modelItem => meti.Grad)</pre>
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Ispiši", "DeleteUpisanog", "VMUpisani", new { id = item.Upisani_ID, id2 = item.OS_ID }, null)
+
+                </tr>
+
+            }
+
+        }
+
+
+    </table>
+
+</div>
+<p>
+
+    @Html.ActionLink("Povratak na listu", "Index", "VMUpisani")
+</p>

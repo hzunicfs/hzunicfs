@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "ManageUserRoles";
+}
+
+<h2>Manage User Roles</h2>
+@Html.ActionLink("Dodaj novu rolu", "Create") | @Html.ActionLink("Izmjeni korisnicke role", "ManageUserRoles")
+<hr />
+
+<h2>Role Add to User</h2>
+
+@using (Html.BeginForm("RoleAddToUser", "Role"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <p>
+        Username : @Html.TextBox("KorisnickoIme")
+        Role Name: @Html.DropDownList("RoleIme", (IEnumerable<SelectListItem>)ViewBag.Roles, "Izaberi ...")
+
+    </p>
+
+    <input type="submit" value="Spremi" />
+}
+<hr />
+<h3>Get Roles for a User</h3>
+@using (Html.BeginForm("GetRoles", "Role"))
+{
+    @Html.AntiForgeryToken()
+    <p>
+        Username : @Html.TextBox("KorisničkoIme")
+        <input type="submit" value="Dohvati korisničke role" />
+    </p>
+}
+
+@if (ViewBag.RolesForThisUser != null)
+{
+    <div style="background-color:yellow;">
+        <h3>Role za ovoga korisnika </h3>
+        <ol>
+            @foreach (string s in ViewBag.RolesForThisUser)
+            {
+                <li>@s</li>
+            }
+        </ol>
+    </div>
+}
+
+<hr />
+<h3>Ukloni rolu korisniku</h3>
+
+@using (Html.BeginForm("DeleteRoleForUser", "Role"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <p>
+        Username : @Html.TextBox("KorisničkoIme")
+        Role Name: @Html.DropDownList("RoleIme", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")
+
+    </p>
+
+    <input type="submit" value="Ukloni rolu korisniku" />
+}
+
+

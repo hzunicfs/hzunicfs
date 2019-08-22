@@ -1,0 +1,145 @@
+﻿@model Algebra.Models.VMUpisani
+
+@{
+    ViewBag.Title = "Create";
+}
+<link href="@Url.Content("~/Content/Style1.css")" rel="stylesheet" type="text/css" />
+<h3><b>OSOBNI PODACI</b></h3>
+
+@using (Html.BeginForm())
+
+
+{
+    @Html.AntiForgeryToken()
+ 
+<div class="form-horizontal">
+
+    @Html.HiddenFor(model => model.Upisi.OS_ID, new { @Value = TempData["OS_ID"] })
+    @Html.HiddenFor(model => model.BrojUpisanih.OS_ID, new { @Value = TempData["OS_ID"] })
+    @Html.HiddenFor(model => model.UpisanihBroj.Upisani_ID, new { @Value =1})
+    <hr />
+    @foreach (ModelState modelState in ViewData.ModelState.Values)
+    {
+        if (modelState.Errors.Any(ms => ms.ErrorMessage == "Osoba sa tim OIB-om već postoji.Klikni za detalje."))
+        {@Html.ActionLink("Osoba sa tim OIB-om već postoji.Klikni za detalje.", "DetailsPostoji", new { id1 = Model.Upisani.OIB }, new { @class = "text-danger" });
+        <p></p>
+
+    }
+
+
+    if (modelState.Errors.Any(ms => ms.ErrorMessage == "Osoba sa tim brojem osobne iskaznice već postoji.Klikni za detalje."))
+    { @Html.ActionLink("Osoba sa tim brojem osobne iskaznice već postoji.Klikni za detalje.", "DetailsPostoji", new { id2 = Model.Upisani.Broj_osobne }, new { @class = "text-danger" })
+    <p></p>
+}
+
+if (modelState.Errors.Any(ms => ms.ErrorMessage == "Email već postoji."))
+{ <div class="text-danger">
+        <text>Email već postoji.</text>
+    </div>
+}
+}
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Upisani.Ime, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Upisani.Ime, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Upisani.Ime, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Upisani.Prezime, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Upisani.Prezime, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Upisani.Prezime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Upisani.OIB, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Upisani.OIB, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Upisani.OIB, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Upisani.Broj_osobne, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Upisani.Broj_osobne, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Upisani.Broj_osobne, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Upisani.Telefon, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Upisani.Telefon, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Upisani.Telefon, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Upisani.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Upisani.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Upisani.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Adreseupisanih.Ulica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adreseupisanih.Kucni_broj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adreseupisanih.Grad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adreseupisanih.Postanski_broj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adreseupisanih.Drzava)
+            </th>
+
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.Adreseupisanih.Ulica, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Adreseupisanih.Ulica, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Adreseupisanih.Kucni_broj, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Adreseupisanih.Kucni_broj, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Adreseupisanih.Grad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Adreseupisanih.Grad, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Adreseupisanih.Postanski_broj, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Adreseupisanih.Postanski_broj, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Adreseupisanih.Drzava, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Adreseupisanih.Drzava, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+    </table>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="ZAVRŠI" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

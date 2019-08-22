@@ -1,0 +1,32 @@
+﻿@model Algebra.Models.VMSeminari
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h3><B>SEMINAR-DETALJI</B></h3>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Seminari.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seminari.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Seminari.Opis)
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.Seminari.Opis, htmlAttributes: new { @readonly = true, @class = "textarea2" })
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Izmjeni", "Edit", new { id = Model.Seminari.Seminar_ID }) |
+    @Html.ActionLink("Povratak na listu seminara", "Seminari")

@@ -1,0 +1,131 @@
+﻿@model Algebra.Models.Pretrazivanje.VMPredbiljezbe.VMPredbiljezbe_Pre
+
+@{
+    ViewBag.Title = "Index";
+}
+<head>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Sakrij').hide();
+            $("#Pretrazi").click(function () {
+                $("#Sakrij").toggle();
+
+            });
+        });
+    </script>
+</head>
+
+
+
+<link href="@Url.Content("~/Content/Style1.css")" rel="stylesheet" type="text/css" />
+<h2>PREDBILJEŽBE</h2>
+@using (Html.BeginForm())
+{@Html.AntiForgeryToken()
+<a href="#" id="Pretrazi">Pretrazi</a>
+<table class="table">
+    <tr id="Sakrij">
+        <th>
+            @Html.EditorFor(model => model.Predbiljezba.Ime, new { htmlAttributes = new { @class = "form-control" } })
+        </th>
+        <th>
+            @Html.EditorFor(model => model.Predbiljezba.Prezime, new { htmlAttributes = new { @class = "form-control" } })
+        </th>
+        <th>
+            @Html.EditorFor(model => model.Predbiljezba.Mjesto_stanovanja, new { htmlAttributes = new { @class = "form-control" } })
+        </th>
+        <th>
+            @Html.EditorFor(model => model.Predbiljezba.Telefon, new { htmlAttributes = new { @class = "form-control" } })
+        </th>
+        <th>
+            @Html.EditorFor(model => model.Predbiljezba.Email, new { htmlAttributes = new { @class = "form-control" } })
+        </th>
+        <th>
+            @Html.EditorFor(model => model.StartDatumZ, new { htmlAttributes = new { @class = "form-control", placeholder = "OD YYYY-MM-DD" } })
+
+            @Html.EditorFor(model => model.EndDatumZ, new { htmlAttributes = new { @class = "form-control", placeholder = "DO YYYY-MM-DD" } })
+        </th>
+        <th>
+            @Html.EditorFor(model => model.Predbiljezba.OS_ID, new { htmlAttributes = new { @class = "form-control" } })
+        </th>
+
+
+
+        <th>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-7" align="right">
+                    <input type="submit" value="PRETRAŽI" class="btn btn-default" />
+                </div>
+            </div>
+        </th>
+    </tr>
+
+
+
+
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Predbiljezba.Ime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Predbiljezba.Prezime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Predbiljezba.Mjesto_stanovanja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Predbiljezba.Telefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Predbiljezba.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Predbiljezba.Datum_predbiljezbe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Predbiljezba.OS_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Predbiljezba.Napomena)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.IEPredbiljezba)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prezime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mjesto_stanovanja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Datum_predbiljezbe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OS_ID)
+            </td>
+            <td>
+                @Html.TextAreaFor(modelItem => item.Napomena, new { @readonly = true })
+            </td>
+            <td>
+                @Html.ActionLink("IZMJENI", "Edit", new { id = item.Predbiljezba_ID }) |
+                @Html.ActionLink("DETALJI", "Details", new { id = item.Predbiljezba_ID }) |
+                @Html.ActionLink("IZBRIŠI", "Delete", new { id = item.Predbiljezba_ID })
+            </td>
+        </tr>
+    }
+
+</table>
+}

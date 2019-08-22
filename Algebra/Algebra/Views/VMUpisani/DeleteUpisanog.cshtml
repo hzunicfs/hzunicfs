@@ -1,0 +1,22 @@
+﻿@model Algebra.Models.VMUpisani
+
+@{
+    ViewBag.Title = "DeleteUpisanog";
+}
+
+    <h3>Dali ste sigurno da želite  <pre style="font-size:larger; display: inline">@Html.DisplayFor(model => model.Upisani.Ime)  @Html.DisplayFor(model => model.Upisani.Ime) </pre>ispisati sa seminara?</h3>
+
+
+    <div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.BrojUpisanih.OS_ID)
+            @Html.HiddenFor(model => model.UpisanihBroj.Upisani_ID)
+            <div class="form-actions no-color">
+                <input type="submit" value="Ispiši" class="btn btn-default" /> |
+                @Html.ActionLink("Povratak na listu upisanih", "ListaUpisanih", "VMUpisani", new { id = @Html.DisplayFor(model => model.Upisi.OS_ID) }, null)
+            </div>
+        }
+    </div>

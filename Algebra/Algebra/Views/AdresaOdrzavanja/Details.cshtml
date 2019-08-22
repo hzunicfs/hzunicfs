@@ -1,0 +1,59 @@
+﻿@model Algebra.Models.Adresa_odrzavanja
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <h3><b>ADRESA ODRŽAVANJA TEČAJA-DETALJI</b></h3>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal"style="font-size:medium" >
+        <dt>
+            @Html.DisplayNameFor(model => model.Ulica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ulica)
+            <br />
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Kucni_broj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kucni_broj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Grad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Grad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Postanski_broj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Postanski_broj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Drzava)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Drzava)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Izmjeni", "Edit", new { id = Model.AO_ID }) |
+    @Html.ActionLink("Povratak na listu adresa održavanja", "Index")
+</p>

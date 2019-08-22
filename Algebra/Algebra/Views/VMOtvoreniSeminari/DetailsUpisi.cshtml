@@ -1,0 +1,64 @@
+﻿@model Algebra.Models.VMOtvoreniSeminari
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h3><b>OTVORENI SEMINAR-DETALJI</b></h3>
+
+<br />
+<div>
+    @Html.AntiForgeryToken()
+
+    <table class="Details">
+
+
+        <tr>
+
+            <td>@Html.LabelFor(model => model.Otvoreniseminari.OS_ID, htmlAttributes: new { @class = "control-label col-md-9" })</td>
+            <td> @Html.DisplayFor(model => model.Otvoreniseminari.OS_ID)</td>
+
+        </tr>
+
+        <tr>
+
+            <td>@Html.LabelFor(model => model.Seminari.Naziv, htmlAttributes: new { @class = "control-label col-md-9" })</td>
+            <td>@Html.DisplayFor(model => model.Seminari.Naziv)</td>
+
+        </tr>
+
+        <tr>
+
+            <td>@Html.LabelFor(model => model.Otvoreniseminari.Datum_pocetka, htmlAttributes: new { @class = "control-label col-md-9" })</td>
+            <td>  @Html.DisplayFor(model => model.Otvoreniseminari.Datum_pocetka)</td>
+
+        </tr>
+
+        <tr>
+
+            <td> @Html.LabelFor(model => model.Otvoreniseminari.Datum_zavrsetka, htmlAttributes: new { @class = "control-label col-md-9" })</td>
+            <td> @Html.DisplayFor(model => model.Otvoreniseminari.Datum_zavrsetka)</td>
+
+        </tr>
+
+        <tr>
+
+            <td> @Html.LabelFor(model => model.Adresaodrzavanja.Ulica, htmlAttributes: new { @class = "control-label col-md-9" }) </td>
+            <td> <pre style="font-size:medium">@Html.DisplayFor(model => model.Adresaodrzavanja.Ulica) @Html.DisplayFor(model => model.Adresaodrzavanja.Kucni_broj), @Html.DisplayFor(model => model.Adresaodrzavanja.Grad)</pre></td>
+
+        </tr>
+        <tr>
+            <td> @Html.Label("OPIS", htmlAttributes: new { @class = "control-label col-md-9" }) </td>
+            <td>  @Html.TextAreaFor(model => model.Seminari.Opis, htmlAttributes: new { @readonly = true, @class = "textarea2" })</td>
+
+        </tr>
+
+    </table>
+   
+</div>
+<br />
+<p class="col-md-9" align="right">
+    @Html.ActionLink("Povratak na listu seminara za upis", "IndexUpisi")&emsp;&emsp;
+
+    @Html.ActionLink("UPIŠI SEMINAR", "Create", "VMPredbiljezba", new { OS_ID = @Html.DisplayFor(model => model.Otvoreniseminari.OS_ID) }, new { @style = "font-weight: bold;font-size:larger" })
+</p>

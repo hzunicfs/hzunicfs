@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Algebra.Models.Seminari>
+
+@{
+    ViewBag.Title = "Seminari";
+}
+
+<h2>Seminari</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdSeminar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Opis)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.IdSeminar)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Naziv)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Opis)
+    </td>
+    <td>
+        @Html.ActionLink("Uredi", "Edit", new { id = item.IdSeminar }) |
+        @Html.ActionLink("Izbriši", "Delete", new { id = item.IdSeminar })
+    </td>
+</tr>
+}
+
+</table>

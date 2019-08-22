@@ -1,0 +1,143 @@
+﻿@model Algebra.Models.VMUpisani
+
+@{
+    ViewBag.Title = "DETALJI O POLAZNIKU";
+
+}
+
+<link href="@Url.Content("~/Content/Style1.css")" rel="stylesheet" type="text/css" />
+
+<h3><b>POLAZNIK-DETALJI</b></h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div>
+
+
+    @Html.HiddenFor(model => model.Upisi.OS_ID, new { @Value = TempData["OS_ID"] })
+    @Html.HiddenFor(model => model.Upisi.Upisani_ID, new { @Value = Model.Upisani.Upisani_ID })
+    @Html.HiddenFor(model => model.UpisanihBroj.Upisani_ID, new { @Value = Model.Upisani.Upisani_ID })
+    @Html.HiddenFor(model => model.BrojUpisanih.OS_ID, new { @Value = TempData["OS_ID"] })
+    <hr />
+
+    <dl class="dl-horizontal" style="font-size:medium">
+        <dt>
+            @Html.DisplayNameFor(model => model.Upisani.Ime)
+
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Upisani.Ime)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Upisani.Prezime)
+
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Upisani.Prezime)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Upisani.OIB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Upisani.OIB)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Upisani.Broj_osobne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Upisani.Broj_osobne)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Upisani.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Upisani.Email)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Upisani.Telefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Upisani.Telefon)
+
+        </dd>
+
+    </dl>
+
+    <table class="table" style="font-size:medium">
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Adreseupisanih.Ulica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adreseupisanih.Kucni_broj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adreseupisanih.Grad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adreseupisanih.Postanski_broj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adreseupisanih.Drzava)
+            </th>
+
+        </tr>
+        @foreach (var item in Model.IEAdresaupisanih.Where(item => item.AU_ID == Model.Upisani.AU_ID))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ulica)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kucni_broj)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grad)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Postanski_broj)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Drzava)
+
+                </td>
+            </tr>
+        }
+    </table>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="UPIŠI" class="btn btn-default" />
+        </div>
+    </div>
+
+
+</div>
+}
+
+
+@Html.ActionLink("Povratak na dodavanje novog polaznika", "Create")

@@ -1,0 +1,131 @@
+﻿@model Algebra.Models.VMPredavac
+    
+@{
+    ViewBag.Title = "Edit";
+}
+    <link href="@Url.Content("~/Content/Style1.css")" rel="stylesheet" type="text/css" />
+    <h3><b>PREDAVAČ-IZMJENA PODATAKA</b></h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Predavaci.Predavaci_ID)
+    @Html.HiddenFor(model => model.Predavaci.AP_ID)
+    @Html.HiddenFor(model => model.Adresepredavaca.AP_ID)
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Predavaci.Ime, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Predavaci.Ime, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Predavaci.Ime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Predavaci.Prezime, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Predavaci.Prezime, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Predavaci.Prezime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Predavaci.OIB, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Predavaci.OIB, new { htmlAttributes = new { @class = "form-control" } })
+          @Html.ValidationMessageFor(model => model.Predavaci.OIB, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Predavaci.Broj_osobne, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Predavaci.Broj_osobne, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Predavaci.Broj_osobne, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Predavaci.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Predavaci.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Predavaci.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Predavaci.Telefon, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Predavaci.Telefon, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Predavaci.Telefon, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+    <br />
+    <h4><b>ADRESA STANOVANJA:</b></h4>
+    <br />
+</div>
+  
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Adresepredavaca.Ulica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adresepredavaca.Kucni_broj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adresepredavaca.Grad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adresepredavaca.Postanski_broj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adresepredavaca.Drzava)
+            </th>
+
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.Adresepredavaca.Ulica, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Adresepredavaca.Ulica, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Adresepredavaca.Kucni_broj, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Adresepredavaca.Kucni_broj, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Adresepredavaca.Grad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Adresepredavaca.Grad, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Adresepredavaca.Postanski_broj, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Adresepredavaca.Postanski_broj, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Adresepredavaca.Drzava, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Adresepredavaca.Drzava, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+    </table>
+
+    <br />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-8" align="right">
+            <input type="submit" value="IZMJENI" class="btn btn-default" />
+        </div>
+    </div>
+}
+<br /> <br />
+<div>
+    @Html.ActionLink("Povratak na listu predavača", "Index")
+</div>

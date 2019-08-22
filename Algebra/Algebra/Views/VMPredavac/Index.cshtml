@@ -1,0 +1,126 @@
+﻿@model Algebra.Models.Pretrazivanje.VMPredavac.VMPredavac_Pre
+
+@{
+    ViewBag.Title = "Index";
+}
+<link href="@Url.Content("~/Content/Style1.css")" rel="stylesheet" type="text/css" />
+
+<head>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Sakrij').hide();
+            $("#Pretrazi").click(function () {
+                $("#Sakrij").toggle();
+
+            });
+        });
+    </script>
+</head>
+
+@using (Html.BeginForm())
+{@Html.AntiForgeryToken()
+<h3><b>PREDAVAČI</b></h3>
+
+<p>
+    @Html.ActionLink("Dodaj novog predavača", "Create", "VMPredavac")&emsp;&emsp; <a href="#" id="Pretrazi">Pretraži</a>
+</p>
+
+<table class="table">
+    <tr id="Sakrij">
+        <th>
+            @Html.EditorFor(model => model.Predavaci.Ime, new { htmlAttributes = new { @class = "form-control" } })
+        </th>
+        <th>
+            @Html.EditorFor(model => model.Predavaci.Prezime, new { htmlAttributes = new { @class = "form-control" } })
+        </th>
+        <th>
+            @Html.EditorFor(model => model.Predavaci.OIB, new { htmlAttributes = new { @class = "form-control" } })
+        </th>
+        <th>
+            @Html.EditorFor(model => model.Predavaci.Broj_osobne, new { htmlAttributes = new { @class = "form-control" } })
+        </th>
+        <th>
+            @Html.EditorFor(model => model.Adresepredavaca.Grad, new { htmlAttributes = new { @class = "form-control" } })
+        </th>
+        <th>
+            @Html.EditorFor(model => model.Predavaci.Email, new { htmlAttributes = new { @class = "form-control" } })
+        </th>
+        <th>
+            @Html.EditorFor(model => model.Predavaci.Telefon, new { htmlAttributes = new { @class = "form-control" } })
+        </th>
+
+        <th>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-8" align="right">
+                    <input type="submit" value="PRETRAŽI" class="btn btn-default" />
+                </div>
+            </div>
+        </th>
+    </tr>
+
+
+
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Predavaci.Ime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Predavaci.Prezime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Predavaci.OIB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Predavaci.Broj_osobne)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Predavaci.AP_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Predavaci.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Predavaci.Telefon)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.IEPredavaci)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prezime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OIB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Broj_osobne)
+            </td>
+            <td>
+                @foreach (var meti in Model.IEAdresepredavaca.Where(meti => meti.AP_ID == item.AP_ID))
+                {
+                    {<pre>@Html.DisplayFor(modelItem => meti.Ulica) @Html.DisplayFor(modelItem => meti.Kucni_broj), @Html.DisplayFor(modelItem => meti.Grad)</pre>}
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefon)
+            </td>
+            <td>
+                @Html.ActionLink("Izmjeni", "Edit", "VMPredavac", new { id = item.Predavaci_ID, id2 = item.AP_ID }, null)|
+                @Html.ActionLink("Detalji", "Details", "VMPredavac", new { id = item.Predavaci_ID, id2 = item.AP_ID }, null)|
+                @Html.ActionLink("Izbriši", "Delete", "VMPredavac", new { id = item.Predavaci_ID, id2 = item.AP_ID }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+}

@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("Styles", false)
+
+
+
+</head>
+<body>
+    <link href="@Url.Content("~/Styles/Style1.css")" rel="stylesheet" type="text/css" />
+
+    <div class="navbar navbar-inverse navbar-fixed-top" >
+        <div class="container">
+            <div class="navbar-header">
+                <div class="navbar-header pull-left">
+                    <a class="navbar-brand2" href="@Url.Action("IndexUpisi", "VMOtvoreniSeminari")">
+                        <img src="~/Content/algebra_logo.png" alt="Site Logo" style="height:40%; width: 40%; margin-top:2.5px; max-height:40px;" />
+                    </a>
+                </div>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    
+                </button>
+                @Html.ActionLink("ALGEBRA", "IndexUpisi", "VMOtvoreniSeminari", null, new { @class = "navbar-brand", @style = "font-size:19px;font-weight: bold;color:#ffffff"})
+            
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" Style="font-weight: bold; color:#ffffff">Pretraživanje <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu" Style="background-color:#000000">
+                                    <li><a href="#">@Html.ActionLink("Otvoreni seminari", "IndexPretrazivanje", "VMOtvoreniSeminari", null, new { @style = "font-weight: bold;color:#ffffff" })</a></li>
+                                    <li><a href="#">@Html.ActionLink("Upisani", "Index", "VMUpisani", null, new { @style = "font-weight: bold;color:#ffffff" })</a></li>
+                                    <li><a href="#">@Html.ActionLink("Predbiljezbe", "Index", "VMPredbiljezba", null, new { @style = "font-weight: bold;color:#ffffff" })</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" Style="font-weight: bold; color:#ffffff">Podaci za upis <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu" Style="background-color:#000000">
+
+                                    <li><a href="#">@Html.ActionLink("Seminari", "Seminari", "VMSeminari", null, new { @style = "font-weight: bold;color:#ffffff" })</a></li>
+                                    <li><a href="#">@Html.ActionLink("Predavaci", "Index", "VMPredavac", null, new { @style = "font-weight: bold;color:#ffffff" })</a></li>
+                                    <li><a href="#">@Html.ActionLink("Adresa održavanja tečaja", "Index", "AdresaOdrzavanja", null, new { @style = "font-weight: bold;color:#ffffff" })</a></li>
+                                </ul>
+                            </li>
+                        }
+
+                    }
+
+                </ul>
+
+                
+
+
+
+
+               
+                @Html.Partial("_LoginPartial")
+            </div>
+            </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - ALGEBRA</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

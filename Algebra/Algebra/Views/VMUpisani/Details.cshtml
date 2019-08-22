@@ -1,0 +1,110 @@
+﻿@model Algebra.Models.VMUpisani
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+    <link href="@Url.Content("~/Content/Style1.css")" rel="stylesheet" type="text/css" />
+
+<h3><b>POLAZNIK-DETALJI</b></h3>
+
+
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal" style="font-size:medium">
+        <dt>
+            @Html.DisplayNameFor(model => model.Upisani.Ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Upisani.Ime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Upisani.Prezime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Upisani.Prezime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Upisani.OIB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Upisani.OIB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Upisani.Broj_osobne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Upisani.Broj_osobne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Upisani.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Upisani.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Upisani.Telefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Upisani.Telefon)
+        </dd>
+
+    </dl>
+
+    <table class="table" style="font-size:medium">
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Adreseupisanih.Ulica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adreseupisanih.Kucni_broj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adreseupisanih.Grad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adreseupisanih.Postanski_broj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adreseupisanih.Drzava)
+            </th>
+
+        </tr>
+        
+        
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.Adreseupisanih.Ulica)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Adreseupisanih.Kucni_broj)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Adreseupisanih.Grad)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Adreseupisanih.Postanski_broj)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Adreseupisanih.Drzava)
+                </td>
+            </tr>
+        
+        </table>
+
+            @Html.ActionLink("Povratak na listu upisanih", "Index")
+     
+</div>
