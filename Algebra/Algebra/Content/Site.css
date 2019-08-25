@@ -42,24 +42,6 @@ navbar {
 
 }
 
-td.right-align {
-    text-align: right;
-}
-
-td.left-align {
-    text-align: left;
-}
-
-table.prodavac {
-    margin-left: 10%;
-    margin-right: auto;
-    width: 40%;
-    font-size: medium;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    text-align: right;
-}
-
-
 table.Details {
     margin-left: 10%;
     margin-right: auto;
