@@ -310,25 +310,35 @@ namespace Algebra.Controllers
                 model.Otvoreniseminari = db.Otvoreni_seminarii.Find(id);
                 db.Otvoreni_seminarii.Remove(model.Otvoreniseminari);
                 model.BrojUpisanih = db.BrojUpisanihh.FirstOrDefault(x => x.OS_ID == id);
-                db.BrojUpisanihh.Remove(model.BrojUpisanih);
-                model.IEUpisi = db.Upisii.Where(x => x.OS_ID == id);
-
-                foreach (var item in model.IEUpisi)
+                if (model.BrojUpisanih != null)
                 {
-                    db.Upisii.Remove(db.Upisii.Find(item.Upisani_ID, item.OS_ID));
+                    db.BrojUpisanihh.Remove(model.BrojUpisanih);
                 }
-                foreach (var item in Upisanih)
-                { foreach (var meti in db.UpisanihBrojj.Where(x => x.Upisani_ID == item))
+                model.IEUpisi = db.Upisii.Where(x => x.OS_ID == id);
+                model.IEUpisanihBroj = db.UpisanihBrojj.ToList();
+                if (model.IEUpisi != null)
+                {
+                    foreach (var item in model.IEUpisi)
                     {
-                        model.UpisanihBroj = db.UpisanihBrojj.FirstOrDefault(x => x.Upisani_ID == item);
-                        model.UpisanihBroj.Brojac--;
-                        db.Entry(model.UpisanihBroj).State = EntityState.Modified;
+                        db.Upisii.Remove(db.Upisii.Find(item.Upisani_ID, item.OS_ID));
+                    }
+                }
+                if (Upisanih != null)
+                {
+                    foreach (var item in Upisanih)
+
+                    {
+                        foreach (var meti in model.IEUpisanihBroj.Where(x => x.Upisani_ID == item))
+                        {
+                            model.UpisanihBroj = model.IEUpisanihBroj.FirstOrDefault(x => x.Upisani_ID == item);
+                            model.UpisanihBroj.Brojac--;
+                            db.Entry(model.UpisanihBroj).State = EntityState.Modified;
+
+                        }
+
 
                     }
-
-
                 }
-
                 db.SaveChanges();
                 return RedirectToAction("IndexPretrazivanje", "VMOtvoreniSeminari");
             }

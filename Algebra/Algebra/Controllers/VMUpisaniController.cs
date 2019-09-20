@@ -110,7 +110,7 @@ namespace Algebra.Controllers
                 db.SaveChanges();
 
                 TempData.Clear();
-                return RedirectToAction("IndexUpisi", "VMOtvoreniSeminari");
+                return RedirectToAction("IndexPretrazivanje", "VMOtvoreniSeminari");
             }
 
             

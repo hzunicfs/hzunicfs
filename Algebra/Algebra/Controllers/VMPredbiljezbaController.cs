@@ -153,14 +153,5 @@ namespace Algebra.Controllers
             return View(VMPredbiljezba);
         }
 
-
-
-
-
-
-
-
-
-
     }
 }

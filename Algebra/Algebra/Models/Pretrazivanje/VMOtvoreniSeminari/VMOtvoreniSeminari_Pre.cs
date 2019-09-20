@@ -45,6 +45,7 @@ namespace Algebra.Models.Pretrazivanje.VMOtvoreniSeminari
         public int? StartBrojUpisanih { get; set; }
         public int? EndBrojUpisanih { get; set; }
         public IEnumerable<BrojUpisanih> IEBrojUpisanih { get; set; }
+        [Display(Name = "BROJ UPISANIH")]
         public BrojUpisanih BrojUpisanih { get; set; }
 
     }

@@ -62,6 +62,7 @@ namespace Algebra.Models
         [EmailAddress(ErrorMessage = "Neispravna email adresa")]
         public string Email { get; set; }
 
+        [Display(Name = "TELEFON")]
         [Required(ErrorMessage = "Broj telefona je obavezan")]
         [Column(Order = 7)]
         public long Telefon {get; set;}
